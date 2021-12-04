@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import "./HeaderMenuItem.css";
 
 const HeaderMenuItem = ({ text, route }: { text: string; route: string }) => {
   return (
     <li>
-      <a href={route}>{text}</a>
+      <Link to={route}>{text}</Link>
     </li>
   );
 };
