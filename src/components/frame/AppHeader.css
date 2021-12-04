@@ -1,0 +1,22 @@
+header {
+  box-shadow: 0 1px 5px #d3d3d3;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.App-logo {
+  height: 3rem;
+  pointer-events: none;
+}
