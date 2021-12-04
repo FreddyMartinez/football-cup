@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-btn {
+  margin: 1rem;
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+  height: 50px;
+  width: 200px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: none;
+  position: relative;
+}
+
+
+.home-btn:hover {
+  color: #767676;
+}

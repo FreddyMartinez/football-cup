@@ -5,4 +5,10 @@ li {
 li a {
   text-decoration: none;
   padding: 0.5rem 1rem;
+  color: #000;
+  border: 1px solid transparent;
+}
+
+li a:hover {
+  border: 1px solid #000;
 }
