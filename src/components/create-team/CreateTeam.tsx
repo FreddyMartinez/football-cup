@@ -1,11 +1,11 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import { CreationForm, PlayerList, NewTeam } from "./";
-import TeamContext from "../../context/teams/TeamContext";
+import CountryContext from "../../context/countries/CountryContext";
 import "./CreateTeam.css";
 
 const CreateTeam = () => {
 
-  const teamContext = useContext(TeamContext)
+  const teamContext = useContext(CountryContext)
   const { loading, searchCountries } = teamContext;
 
   useEffect(() => {

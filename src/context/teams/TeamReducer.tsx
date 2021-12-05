@@ -1,40 +1,34 @@
-import { CountryInterface } from "../../util/country.interface";
+import { ActionInterface, PlayerInterface } from "../../util/interfaces";
 import * as types from "../Types";
 
-interface ActionInterface {
-  type: string,
-  payload?: any
-}
-
 export interface TeamStateIterface {
-  countries: CountryInterface[];
-  players: any[];
-  teams: any[];
-  loading: boolean;
-  searchCountries?: () => any;
-  searchPlayers?: (id: number) => any;
+  name: string;
+  players: PlayerInterface[];
+  coach?: PlayerInterface[];
+  addPlayer?: (player: PlayerInterface) => any;
+  setCoach?: (coach: PlayerInterface) => any;
+  setTeamName?: (name: string) => any;
+  saveTeam?: () => any;
 }
 
 const TeamReducer = (state: TeamStateIterface, action: ActionInterface) => {
   switch (action.type) {
-    case types.GET_COUNTRIES:
+    case types.ADD_PLAYER:
       return {
         ...state,
-        countries: action.payload,
-        loading: false,
+        players: [...state.players, action.payload]
       };
 
-    case types.GET_PLAYERS:
+    case types.SET_COACH:
       return {
         ...state,
-        player: action.payload,
-        loading: false,
+        coach: action.payload
       };
 
-    case types.SET_LOADING:
+    case types.SET_TEAM_NAME:
       return {
         ...state,
-        loading: true,
+        name: action.payload,
       };
 
     default:

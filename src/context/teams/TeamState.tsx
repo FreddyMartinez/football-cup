@@ -1,70 +1,37 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import TeamContext, { initialState } from "./TeamContext";
 import TeamReducer from "./TeamReducer";
 import * as types from "../Types";
-import axios from "axios";
-import { CountryInterface } from "../../util/country.interface";
-import { PlayerInterface } from "../../util/playerInterface";
+import { PlayerInterface } from "../../util/interfaces";
 
-const requestHeader = {
-  "X-Auth-Token": process.env.REACT_APP_API_TOKEN || "",
-  "content-type": "application/json",
-};
-
-interface TeamProps {
-  children: any;
-}
-
-const TeamState = (props: TeamProps) => {
-  
+const TeamState = (props: { children: any }) => {
   const [state, dispatch] = useReducer(TeamReducer, initialState);
 
-  const setLoading = () => {
-    dispatch({ type: types.SET_LOADING });
-  };
-
-  const searchCountries = async () => {
-    setLoading();
-    try {
-      // In this case I'm using only the 32 teams that participated in the 2018 World Cup
-      const axiosRes = await axios.get(
-        "https://api.football-data.org/v2/competitions/2000/teams",
-        { headers: requestHeader }
-      );
-      const countries: CountryInterface[] = axiosRes.data.teams;
-      
-      dispatch({ type: types.GET_COUNTRIES, payload: countries });
-    } catch (error) {
-      dispatch({ type: types.GET_COUNTRIES, payload: [] });
-    }
+  const setTeamName = (name: string) => {
+    dispatch({ type: types.SET_TEAM_NAME, payload: name})
   }
 
-  const searchPlayers = async (teamId: number) => {
-    setLoading();
-    try {
-      const axiosRes = await axios.get(
-        `https://api.football-data.org/v2/teams/${teamId}`,
-        { headers: requestHeader }
-      );
-      const players: PlayerInterface[] = axiosRes.data.squad;
-      console.log(players);
-      
-      dispatch({ type: types.GET_PLAYERS, payload: players });
-    } catch (error) {
-      console.log(error)
-      dispatch({ type: types.GET_COUNTRIES, payload: [] });
-    }
+  const addPlayer = (player: PlayerInterface) => {
+    dispatch({ type: types.ADD_PLAYER, payload: player})
+  }
+  const setCoach = (coach: PlayerInterface) => {
+    dispatch({ type: types.SET_COACH, payload: coach})
+  }
+
+  const saveTeam = () => {
+    // TODO save in localStorage
   }
 
   return (
     <TeamContext.Provider
       value={{
-        countries: state.countries,
+        name: state.name,
         players: state.players,
-        teams: state.teams,
-        loading: state.loading,
-        searchCountries,
-        searchPlayers
+        coach: state.coach,
+        addPlayer,
+        setCoach,
+        setTeamName,
+        saveTeam
       }}
     >
       {props.children}

@@ -2,10 +2,8 @@ import { createContext } from "react";
 import { TeamStateIterface } from "./TeamReducer";
 
 export const initialState: TeamStateIterface = {
-  countries: [],
-  players: [],
-  teams: [],
-  loading: false
+  name: "",
+  players: []
 };
 
 const TeamContext = createContext<TeamStateIterface>(initialState);
