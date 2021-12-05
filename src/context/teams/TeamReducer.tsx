@@ -1,3 +1,4 @@
+import { CountryInterface } from "../../util/country.interface";
 import * as types from "../Types";
 
 interface ActionInterface {
@@ -6,12 +7,12 @@ interface ActionInterface {
 }
 
 export interface TeamStateIterface {
-  countries: any[];
+  countries: CountryInterface[];
   players: any[];
   teams: any[];
   loading: boolean;
   searchCountries?: () => any;
-  searchPlayers?: (id: string) => any;
+  searchPlayers?: (id: number) => any;
 }
 
 const TeamReducer = (state: TeamStateIterface, action: ActionInterface) => {

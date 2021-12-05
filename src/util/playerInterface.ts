@@ -1,5 +1,7 @@
 export interface PlayerInterface {
+  id: number,
   name: string;
   position: string;
-  country: string;
+  nationality: string;
+  role: string;
 }
