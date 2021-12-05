@@ -23,3 +23,9 @@
   top: 3px;
   width: 3px;
 }
+
+.card {
+  border: 1px solid rgb(0,0,0,15%);
+  border-radius: 0.25rem;
+  box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 20%);
+}
