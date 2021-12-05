@@ -2,4 +2,15 @@
   margin: 2rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.position-filter {
+  margin: 0 2rem;
+  width: 50%;
+}
+
+.position-filter select {
+  width: 100%;
+  padding: 10px 5px;
 }
