@@ -4,7 +4,7 @@ import * as types from "../Types";
 export interface TeamStateIterface {
   name: string;
   players: PlayerInterface[];
-  coach?: PlayerInterface[];
+  coach?: PlayerInterface;
   addPlayer?: (player: PlayerInterface) => any;
   setCoach?: (coach: PlayerInterface) => any;
   setTeamName?: (name: string) => any;

@@ -2,3 +2,44 @@ form {
   margin: 2rem;
   width: 100%;
 }
+
+form div {
+  padding: 0.5rem 0;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  border: 1px solid gray;
+  padding: 10px 5px;
+}
+
+.input-auto-complete {
+  position: relative;
+}
+
+.input-auto-complete ul {
+  position: absolute;
+  text-align: left;
+  margin: 0;
+  padding: 0 5px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.input-auto-complete ul::before {
+  content: "";
+}
+
+.input-auto-complete ul li {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.input-auto-complete ul li:hover {
+  font-weight: bold;
+}
