@@ -5,3 +5,23 @@
   margin: 0.5rem;
   padding: 1rem;
 }
+
+.player-card img {
+  width: 200px;
+}
+
+.add-btn {
+  margin: 1rem;
+  background-color: #000;
+  color: #fff;
+  height: 40px;
+  width: 180px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: none;
+  position: relative;
+}
+
+.add-btn:hover {
+  color: #767676;
+}
