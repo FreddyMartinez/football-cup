@@ -1,0 +1,13 @@
+.team-card {
+  width: 40vw;
+  padding: 1rem;
+}
+
+.team-card table {
+  width: 100%
+}
+
+.team-card table th {
+  text-align: left;
+  padding: 0.25rem;
+}
