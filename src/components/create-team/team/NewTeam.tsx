@@ -10,7 +10,11 @@ import "./NewTeam.css";
 
 export const NewTeam = () => {
   const teamContext = useContext(TeamContext);
-  const { name, coach, players } = teamContext;
+  const { name, coach, players, saveTeam, removePlayer } = teamContext;
+
+  const saveCurrentTeam = () => {
+    saveTeam && saveTeam();
+  };
 
   const calcMissingPlayers = () => {
     const missingDefenders =
@@ -50,7 +54,9 @@ export const NewTeam = () => {
     } else {
       return (
         <div>
-          <button>Save</button>
+          <button className='btn btn-save-team' onClick={saveCurrentTeam}>
+            Save Team
+          </button>
         </div>
       );
     }
@@ -61,7 +67,7 @@ export const NewTeam = () => {
       <h4>Your Team: {name}</h4>
       <p>
         <span className='text-bold'>Coach:</span>{" "}
-        {coach ? coach.name : "please choose one"}
+        {coach ? `${coach.name} from ${coach.nationality}` : "please choose one"}
       </p>
       <p>
         <span className='text-bold'>Players:</span>
@@ -72,6 +78,7 @@ export const NewTeam = () => {
             <th>Name</th>
             <th>Country</th>
             <th>Position</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -80,6 +87,14 @@ export const NewTeam = () => {
               <td>{player.name}</td>
               <td>{player.nationality}</td>
               <td>{player.position}</td>
+              <td>
+                <button
+                  className='remove-btn'
+                  onClick={() => removePlayer && removePlayer(player.id)}
+                >
+                  X
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

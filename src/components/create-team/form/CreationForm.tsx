@@ -72,17 +72,18 @@ export const CreationForm = () => {
         />
       </div>
       <div className='input-auto-complete'>
-        <label htmlFor='countryInput'>Search players by country</label>
+        <label htmlFor='countryInput'>Choose a country to search for players</label>
         <input
           type='text'
           id='countryInput'
           autoComplete='off'
           value={countryText}
-          placeholder='Country'
+          placeholder='Write a country'
           onChange={e => countryinputChange(e.target.value)}
         />
         {renderCountries()}
       </div>
+      <p>Remember that you can choose a maximum of 4 players from the same country</p>
     </form>
   );
 };

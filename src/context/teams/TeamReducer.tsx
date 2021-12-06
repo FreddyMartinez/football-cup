@@ -9,6 +9,7 @@ export interface TeamStateIterface {
   setCoach?: (coach: PlayerInterface) => any;
   setTeamName?: (name: string) => any;
   saveTeam?: () => any;
+  removePlayer?: (id: number) => any;
 }
 
 const TeamReducer = (state: TeamStateIterface, action: ActionInterface) => {
@@ -29,6 +30,20 @@ const TeamReducer = (state: TeamStateIterface, action: ActionInterface) => {
       return {
         ...state,
         name: action.payload,
+      };
+
+    case types.REMOVE_PLAYER:
+      return {
+        ...state,
+        players: { ...action.payload },
+      };
+
+    case types.SAVE_TEAM:
+      return {
+        ...state,
+        name: "",
+        players: {},
+        coach: null,
       };
 
     default:

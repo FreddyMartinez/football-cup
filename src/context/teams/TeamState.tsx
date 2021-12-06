@@ -2,7 +2,8 @@ import { useReducer } from "react";
 import TeamContext, { initialState } from "./TeamContext";
 import TeamReducer from "./TeamReducer";
 import * as types from "../Types";
-import { PlayerInterface } from "../../util/interfaces";
+import { PlayerInterface, TeamInterface } from "../../util/interfaces";
+import { getTeamsFromStorage, saveInLocalStorage } from "../../util/util-functions";
 
 const TeamState = (props: { children: any }) => {
   const [state, dispatch] = useReducer(TeamReducer, initialState);
@@ -14,13 +15,28 @@ const TeamState = (props: { children: any }) => {
   const addPlayer = (player: PlayerInterface) => {
     dispatch({ type: types.ADD_PLAYER, payload: player})
   }
+
+  const removePlayer = (playerId: number) => {
+    delete state.players[playerId];
+    dispatch({ type: types.REMOVE_PLAYER, payload: state.players})
+  }
+
   const setCoach = (coach: PlayerInterface) => {
     dispatch({ type: types.SET_COACH, payload: coach})
   }
 
   const saveTeam = () => {
-    // TODO save in localStorage
-  }
+    const myTeams = getTeamsFromStorage();
+    const newTeam: TeamInterface = {
+      name: state.name,
+      players: state.players,
+      coach: state.coach,
+    };
+    myTeams.push(newTeam);
+    saveInLocalStorage(myTeams);
+    // show alert or something
+    dispatch({ type: types.SAVE_TEAM });
+  };
 
   return (
     <TeamContext.Provider
@@ -31,6 +47,7 @@ const TeamState = (props: { children: any }) => {
         addPlayer,
         setCoach,
         setTeamName,
+        removePlayer,
         saveTeam
       }}
     >
