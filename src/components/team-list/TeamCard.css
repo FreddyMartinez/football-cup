@@ -1,6 +1,7 @@
 .team-card {
   width: 40vw;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .team-card table {

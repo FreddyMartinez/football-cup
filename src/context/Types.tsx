@@ -6,3 +6,5 @@ export const ADD_PLAYER = "ADD_PLAYER";
 export const REMOVE_PLAYER = "REMOVE_PLAYER";
 export const SET_COACH = "SET_COACH";
 export const SAVE_TEAM = "SAVE_TEAM";
+export const SET_ALERT = "SET_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";

@@ -1,4 +1,5 @@
 import { Fragment, useContext } from "react";
+import AlertContex from "../../../context/alert/AlertContext";
 import TeamContext from "../../../context/teams/TeamContext";
 import {
   RequiredAttackers,
@@ -12,8 +13,12 @@ export const NewTeam = () => {
   const teamContext = useContext(TeamContext);
   const { name, coach, players, saveTeam, removePlayer } = teamContext;
 
+  const alertContext = useContext(AlertContex);
+  const { setAlert } = alertContext;
+
   const saveCurrentTeam = () => {
     saveTeam && saveTeam();
+    setAlert("Team saved", "success");
   };
 
   const calcMissingPlayers = () => {
@@ -64,10 +69,12 @@ export const NewTeam = () => {
 
   return (
     <div className='nt-container card'>
-      <h4>Your Team: {name}</h4>
+      <h4>Your Team: {name ? name : "please give your team a name"}</h4>
       <p>
         <span className='text-bold'>Coach:</span>{" "}
-        {coach ? `${coach.name} from ${coach.nationality}` : "please choose one"}
+        {coach
+          ? `${coach.name} from ${coach.nationality}`
+          : "please choose one"}
       </p>
       <p>
         <span className='text-bold'>Players:</span>

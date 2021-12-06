@@ -7,20 +7,25 @@ import TeamList from "./components/team-list/TeamList";
 import TeamState from "./context/teams/TeamState";
 import CountryState from "./context/countries/CountryState";
 import PlayerState from "./context/players/PlayerState";
+import AlertState from "./context/alert/AlertState";
+import Alert from "./components/frame/AppAlert";
 
 function App() {
   return (
     <CountryState>
       <TeamState>
         <PlayerState>
-          <Router>
-            <AppHeader></AppHeader>
-            <Routes>
-              <Route path='/' element={<AppHome />} />
-              <Route path='/create' element={<CreateTeam />} />
-              <Route path='/teams' element={<TeamList />} />
-            </Routes>
-          </Router>
+          <AlertState>
+            <Router>
+              <AppHeader />
+              <Alert />
+              <Routes>
+                <Route path='/' element={<AppHome />} />
+                <Route path='/create' element={<CreateTeam />} />
+                <Route path='/teams' element={<TeamList />} />
+              </Routes>
+            </Router>
+          </AlertState>
         </PlayerState>
       </TeamState>
     </CountryState>
