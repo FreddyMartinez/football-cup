@@ -24,6 +24,10 @@
   width: 3px;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .card {
   border: 1px solid rgb(0,0,0,15%);
   border-radius: 0.25rem;

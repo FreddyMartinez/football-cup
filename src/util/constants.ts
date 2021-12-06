@@ -5,3 +5,9 @@ export const requestHeader = {
 
 export const PlayerRole = "PLAYER";
 export const CoachRole = "COACH";
+
+export const RequiredDefenders = 4;
+export const RequiredMidfielders = 4;
+export const RequiredAttackers = 2;
+export const RequiredGoalkeepers = 2;
+export const MaxPeople = 16;

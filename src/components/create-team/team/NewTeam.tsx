@@ -1,44 +1,84 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import TeamContext from "../../../context/teams/TeamContext";
+import {
+  RequiredAttackers,
+  RequiredDefenders,
+  RequiredGoalkeepers,
+  RequiredMidfielders,
+} from "../../../util/constants";
 import "./NewTeam.css";
 
 export const NewTeam = () => {
-  const players: any[] = [
-    {
-      name: "Cristiano",
-      country: "Portugal",
-      position: "attacker",
-    },
-  ];
+  const teamContext = useContext(TeamContext);
+  const { name, coach, players } = teamContext;
 
   const calcMissingPlayers = () => {
-    return (
-      <Fragment>
-        Missing:
-        <ul>
-          <li>n defenders</li>
-          <li>n midfielders</li>
-          <li>n attackers</li>
-          <li>n goalkeepers</li>
-        </ul>
-      </Fragment>
-    );
-  }
+    const missingDefenders =
+      RequiredDefenders -
+      Object.values(players).filter(p => p.position === "Defender").length;
+    const missingMidfielder =
+      RequiredMidfielders -
+      Object.values(players).filter(p => p.position === "Midfielder").length;
+    const missingAttackers =
+      RequiredAttackers -
+      Object.values(players).filter(p => p.position === "Attacker").length;
+    const missingGoalkeepers =
+      RequiredGoalkeepers -
+      Object.values(players).filter(p => p.position === "Goalkeeper").length;
+
+    if (
+      !coach ||
+      missingDefenders > 0 ||
+      missingAttackers > 0 ||
+      missingMidfielder > 0 ||
+      missingGoalkeepers > 0
+    ) {
+      return (
+        <Fragment>
+          Missing:
+          {!coach && <span>Coach</span>}
+          {missingDefenders > 0 && <span>{missingDefenders} defenders</span>}
+          {missingMidfielder > 0 && (
+            <span>{missingMidfielder} midfielders</span>
+          )}
+          {missingAttackers > 0 && <span>{missingAttackers} attackers</span>}
+          {missingGoalkeepers > 0 && (
+            <span>{missingGoalkeepers} goalkeepers</span>
+          )}
+        </Fragment>
+      );
+    } else {
+      return (
+        <div>
+          <button>Save</button>
+        </div>
+      );
+    }
+  };
 
   return (
-    <div className='nt-container'>
+    <div className='nt-container card'>
+      <h4>Your Team: {name}</h4>
+      <p>
+        <span className='text-bold'>Coach:</span>{" "}
+        {coach ? coach.name : "please choose one"}
+      </p>
+      <p>
+        <span className='text-bold'>Players:</span>
+      </p>
       <table>
         <thead>
           <tr>
-          <th>Name</th>
-          <th>Country</th>
-          <th>Position</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Position</th>
           </tr>
         </thead>
         <tbody>
-          {players.map((player, index) => (
+          {Object.values(players).map((player, index) => (
             <tr key={index}>
               <td>{player.name}</td>
-              <td>{player.country}</td>
+              <td>{player.nationality}</td>
               <td>{player.position}</td>
             </tr>
           ))}

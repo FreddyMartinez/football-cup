@@ -3,7 +3,7 @@ import * as types from "../Types";
 
 export interface TeamStateIterface {
   name: string;
-  players: PlayerInterface[];
+  players: { [key: number]: PlayerInterface };
   coach?: PlayerInterface;
   addPlayer?: (player: PlayerInterface) => any;
   setCoach?: (coach: PlayerInterface) => any;
@@ -16,13 +16,13 @@ const TeamReducer = (state: TeamStateIterface, action: ActionInterface) => {
     case types.ADD_PLAYER:
       return {
         ...state,
-        players: [...state.players, action.payload]
+        players: { ...state.players, [action.payload.id]: action.payload },
       };
 
     case types.SET_COACH:
       return {
         ...state,
-        coach: action.payload
+        coach: action.payload,
       };
 
     case types.SET_TEAM_NAME:
