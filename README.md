@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Football Cup Challenge
+
+This is a proof-of-concept app using React. I am using the [football-data API](https://fmartinez-test.web.app/) to get the information of teams and players.
+For ease, only the 32 teams that participated in the 2018 world cup are used in this POC.
+
+You can see the result [here](https://fmartinez-test.web.app/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
